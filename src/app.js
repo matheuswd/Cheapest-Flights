@@ -17,19 +17,21 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
+	res.render('index', {
+		title: 'Your Cheapest Flights'
+	})
+})
+
+app.get('/flights', (req, res) => {
 	if(!req.query.origin) {
 		return res.send({
 			error: 'You must provide a valid origin point'
 		})
 	}
 
-	return priceHistory({
-		currency: 'USD',
-		origin: req.query.origin,
-		limit: 10
-	}, (error, response) => {
-		res.send({
-			response
+	priceHistory({currency: 'BRL', origin: req.query.origin, limit: 3}, (error, {flightInfo}) => {
+		return res.send({
+			flightInfo
 		})
 	})
 })
