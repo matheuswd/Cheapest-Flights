@@ -18,13 +18,16 @@ flightForm.addEventListener('submit', (e) => {
 		response.json().then(({flightInfo}) => {
 			flightInfo.forEach((flight) => {
 				const p = document.createElement('p')
-				p.textContent = `Existe um voo de ida e volta de ${flight.origin} para ${flight.destination} ao preço de R$ ${flight.value}`
+				p.textContent = `Existe um voo de ida e volta de ${flight.origin} para ${flight.destination} ao preço de R$ ${flight.value}, saindo no dia ${flight.depart_date} e voltando em ${flight.return_date}`
 				fragment.appendChild(p)
 			})
 			flightsDiv.appendChild(fragment)
 		})
 	})
 })
+
+// heroku create unique-name
+// add  "start": "node src/app.js" to the scripts section in package.json
 
 
 // return res.send({
