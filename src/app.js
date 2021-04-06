@@ -18,18 +18,22 @@ app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
 	res.render('index', {
-		title: 'Your Cheapest Flights'
+		title: 'Seu Vôo Mais Barato'
 	})
 })
 
 app.get('/flights', (req, res) => {
 	if(!req.query.origin) {
 		return res.send({
-			error: 'You must provide a valid origin point'
+			error: 'É preciso inserir um ponto de partida válido, como GRU, OPO, LIS, LON, LGA'
 		})
 	}
 
-	priceHistory({currency: 'BRL', origin: req.query.origin, limit: 3}, (error, {flightInfo}) => {
+	priceHistory({
+		currency: 'BRL',
+		origin: req.query.origin,
+		limit: 3
+	}, (error, {flightInfo}) => {
 		return res.send({
 			flightInfo
 		})

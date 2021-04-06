@@ -4,13 +4,14 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/style.css">
 	<title>{{title}}</title>
 </head>
 <body>
-	<h1>{{title}}</h1>
-	<form>
-		<input type="text" placeholder="Origin, like: OPO, GRU, LIS, LON">
-		<button>Search</button>
+	<h1 class="title">{{title}}</h1>
+	<form class="form">
+		<input type="text" class="form__input" placeholder="Digite o seu aeroporto de origem, como OPO, LIS, GRU, CGH, LGA">
+		<button class="form__button">Buscar</button>
 
 		<div id="flights"></div>
 	</form>

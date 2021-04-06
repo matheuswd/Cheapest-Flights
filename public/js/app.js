@@ -4,7 +4,6 @@ const flightForm = document.querySelector('form')
 const search = document.querySelector('input')
 
 const flightsDiv = document.querySelector('#flights')
-const fragment = document.createDocumentFragment();
 
 flightForm.addEventListener('submit', (e) => {
 	e.preventDefault()
@@ -16,6 +15,7 @@ flightForm.addEventListener('submit', (e) => {
 	fetch(`/flights?origin=${location}`)
 	.then((response) => {
 		response.json().then(({flightInfo}) => {
+			const fragment = document.createDocumentFragment();
 			flightInfo.forEach((flight) => {
 				const p = document.createElement('p')
 				p.textContent = `Existe um voo de ida e volta de ${flight.origin} para ${flight.destination} ao preço de R$ ${flight.value}, saindo no dia ${flight.depart_date} e voltando em ${flight.return_date}`
