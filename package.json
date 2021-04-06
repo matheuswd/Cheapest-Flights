@@ -16,7 +16,7 @@
     "url": "https://github.com/matheuswd/Cheapest-Flights/issues"
   },
   "homepage": "https://github.com/matheuswd/Cheapest-Flights#readme",
-  "devDependencies": {
+  "dependencies": {
     "express": "^4.17.1",
     "hbs": "^4.1.1",
     "postman-request": "^2.88.1-postman.29"
