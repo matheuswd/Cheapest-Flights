@@ -28,7 +28,7 @@ flightForm.addEventListener('submit', (e) => {
 
 // heroku create unique-name
 // add  "start": "node src/app.js" to the scripts section in package.json
-
+// git push heroku main
 
 // return res.send({
 // 	value: flightInfo[0].value,
