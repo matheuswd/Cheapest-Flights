@@ -18,7 +18,7 @@ app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
 	res.render('index', {
-		title: 'Seu Vôo Mais Barato'
+		title: 'Vôo Mais Barato'
 	})
 })
 
@@ -32,7 +32,7 @@ app.get('/flights', (req, res) => {
 	priceHistory({
 		currency: 'BRL',
 		origin: req.query.origin,
-		limit: 3
+		limit: 4
 	}, (error, {flightInfo}) => {
 		return res.send({
 			flightInfo
@@ -41,5 +41,6 @@ app.get('/flights', (req, res) => {
 })
 
 app.listen(port, () => {
+	console.log(port)
 	console.log('Server up and runnning')
 })

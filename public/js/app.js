@@ -11,17 +11,33 @@ flightForm.addEventListener('submit', (e) => {
 	flightsDiv.textContent = ''
 
 	const location = search.value
+	let html = ''
 
 	fetch(`/flights?origin=${location}`)
 	.then((response) => {
 		response.json().then(({flightInfo}) => {
-			const fragment = document.createDocumentFragment();
 			flightInfo.forEach((flight) => {
-				const p = document.createElement('p')
-				p.textContent = `Existe um voo de ida e volta de ${flight.origin} para ${flight.destination} ao preço de R$ ${flight.value}, saindo no dia ${flight.depart_date} e voltando em ${flight.return_date}`
-				fragment.appendChild(p)
+				html += `<div class="card">
+				<div class="card__wrapper">
+					<span>Origem:</span><p class="card__departure-airport">${flight.origin}</p>
+					<span>Destino:</span><p class="card__arrival-airport">${flight.destination}</p>
+				</div>
+				<div class="info__wrapper">
+					<div class="first-part">
+						<span>Data de ida:</span><p class="card__departure-date">${flight.depart_date}</p>
+						<span>Data de volta:</span><p class="card__return-date">${flight.return_date}</p>
+					</div>
+					<div class="second-part">
+						<span>Onde comprar:</span><p class="card__gate">${flight.gate}</p>
+						<span>Escalas:</span><p class="card__number-of-changes">${flight.number_of_changes}</p>
+					</div>
+					<div class="third-part">
+						<button class="card__price">R$ ${flight.value}</button>
+					</div>
+				</div>
+			</div>`
 			})
-			flightsDiv.appendChild(fragment)
+			flightsDiv.innerHTML = html
 		})
 	})
 })

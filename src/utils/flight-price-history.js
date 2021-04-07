@@ -26,11 +26,12 @@ const priceHistory = (parameters, callback) => {
 
 	const token = '74ea92d8ddaa6539ed06c1cfc870ccf9'
 	let url = `http://api.travelpayouts.com/v2/prices/latest?&token=${token}`
-
+	
 	Object.keys(options).forEach(key => {
 		url += options[key]
 	})
 	
+	console.log(url)
 	request({url: url, json: true}, (error, {body}) => {
 		if(error) {
 			callback(error, undefined)

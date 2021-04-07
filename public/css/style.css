@@ -1,13 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Nunito', sans-serif;
+}
+
 body {
-	max-width: 80%;
-	margin: 0 auto;
+	background-color: #fefefe;
+}
+
+header {
+	width: 100%;
+	margin: 0;
+	height: 6rem;
+	background-color: #2A265F;
+	text-transform: uppercase;
+	padding-top: 1.5rem;
+	color: #fff;
+}
+
+header nav {
+	padding: 0;
+	width: 80%;
+	margin: auto;
+}
+
+header nav ul {
+	display: flex;
+	list-style: none;
+	height: 100%;
+	align-items: center;
+}
+
+header nav ul li {
+	
 }
 
 .title {
-	font-family:Arial, Helvetica, sans-serif;
 	text-align: center;
+	padding: 1rem 2rem;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+	font-weight: 200;
+    outline: none;
+}
+
+.how-it-works {
+	width: 80%;
+	text-align: center;
+	margin: auto;
+	margin-top: 1.5rem;
+}
+
+.how-it-works__title {
+
+}
+
+.how-it-works__explanation {
+	margin-top: 1rem;
+	padding-right: 10rem;
+	padding-left: 10rem;
 }
 
 .form {
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	margin-top: 2rem;
+	margin-bottom: 4rem;
+}
+
+.travel-search {
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	margin-top: 1.4rem;
+}
+
+.travel-search__instructions {
+
+}
+
+.travel-search ul {
+	list-style: none;
+}
+
+.card {
+	border-radius: 10px;
+    box-shadow: 0 10px 10px rgb(0 0 0 / 20%);
+    display: flex;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+    width: 700px;
+	margin-bottom: 1rem;
+	background-color: #fff;
+}
+
+.card__wrapper {
+	max-width: 250px;
+	background-color: #2A265F;
+    color: #fff;
+    padding: 1.5rem;
+	text-align: left;
+}
+
+.card__wrapper span,
+.card__arrival-destination {
+	opacity: 0.6;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+	font-size: .6rem;
+}
+
+.card__departure-airport,
+.card__arrival-airport {
+	letter-spacing: 1px;
+    margin: 0 0 .5rem 0;
+	font-size: 1.5rem;
+}
+
+.info__wrapper {
 	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.info__wrapper .first-part, 
+.info__wrapper .second-part {
+	width: 35%;
+}
+
+.info__wrapper .third-part {
+	margin: auto;
+}
+
+.card__price {
+	color: #fff;
+    background-color: #2a265f;
+    border-radius: 6px;
+    padding: .5rem;
+    border: 0;
+    outline: none;
+    font-weight: bold;
+    width: 8rem;
+    height: 3rem;
+    font-size: 1rem;
+}
+
+.info__wrapper span {
+	opacity: 0.6;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+	font-size: .6rem;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+	.how-it-works__explanation {
+		margin-top: 1rem;
+		padding-right: 1rem;
+		padding-left: 1rem;
+	}
 }
