@@ -30,8 +30,7 @@ const priceHistory = (parameters, callback) => {
 	Object.keys(options).forEach(key => {
 		url += options[key]
 	})
-	
-	console.log(url)
+
 	request({url: url, json: true}, (error, {body}) => {
 		if(error) {
 			callback(error, undefined)
