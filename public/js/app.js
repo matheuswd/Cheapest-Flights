@@ -18,26 +18,28 @@ flightForm.addEventListener('submit', (e) => {
 		response.json().then(({flightInfo}) => {
 			flightInfo.forEach((flight) => {
 				html += `<div class="card">
-				<div class="card__wrapper">
-					<span>Origem:</span><p class="card__departure-airport">${flight.origin}</p>
-					<span>Destino:</span><p class="card__arrival-airport">${flight.destination}</p>
-				</div>
-				<div class="info__wrapper">
-					<div class="first-part">
-						<span>Data de ida:</span><p class="card__departure-date">${flight.depart_date}</p>
-						<span>Data de volta:</span><p class="card__return-date">${flight.return_date}</p>
+					<div class="card__wrapper">
+						<span>Origem:</span><p class="card__departure-airport">${flight.origin}</p>
+						<span>Destino:</span><p class="card__arrival-airport">${flight.destination}</p>
 					</div>
-					<div class="second-part">
-						<span>Onde comprar:</span><p class="card__gate">${flight.gate}</p>
-						<span>Escalas:</span><p class="card__number-of-changes">${flight.number_of_changes}</p>
+					<div class="info__wrapper">
+						<div class="first-part">
+							<span>Data de ida:</span><p class="card__departure-date">${flight.depart_date}</p>
+							<span>Data de volta:</span><p class="card__return-date">${flight.return_date}</p>
+						</div>
+						<div class="second-part">
+							<span>Onde comprar:</span><p class="card__gate">${flight.gate}</p>
+							<span>Escalas:</span><p class="card__number-of-changes">${flight.number_of_changes}</p>
+						</div>
+						<div class="third-part">
+							<button class="card__price">R$ ${flight.value}</button>
+						</div>
 					</div>
-					<div class="third-part">
-						<button class="card__price">R$ ${flight.value}</button>
-					</div>
-				</div>
-			</div>`
+				</div>`
 			})
 			flightsDiv.innerHTML = html
+		}).catch((e) => {
+			flightsDiv.innerHTML = `<h4>Aeroporto de origem não encontrado</h4>`
 		})
 	})
 })

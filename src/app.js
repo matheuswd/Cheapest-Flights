@@ -33,7 +33,13 @@ app.get('/flights', (req, res) => {
 		currency: 'BRL',
 		origin: req.query.origin,
 		limit: 4
-	}, (error, {flightInfo}) => {
+	}, (error, {flightInfo} = {}) => {
+		if (error) {
+			return res.send({
+				error: 'Houve um error'
+			})
+		}
+
 		return res.send({
 			flightInfo
 		})
