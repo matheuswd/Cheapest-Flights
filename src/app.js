@@ -2,7 +2,7 @@ const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
 const priceHistory = require('./utils/flight-price-history')
-const getCityName = require('./utils/get-city-name')
+const getCityData = require('./utils/get-city-data')
 
 const app = express()
 const port = process.env.PORT || 3000 // For Heroku
@@ -24,31 +24,30 @@ app.get('', (req, res) => {
 })
 
 app.get('/flights', (req, res) => {
-	if(!req.query.origin) {
-		return res.send({
-			error: 'É preciso inserir um ponto de partida válido, como GRU, OPO, LIS, LON, LGA'
-		})
+	const data = {
+		currency: 'BRL',
+		limit: 4
 	}
 
-	priceHistory({
-		currency: 'BRL',
-		origin: req.query.origin,
-		limit: 4
-	}, (error, {flightInfo} = {}) => {
+	if (req.query.currency) data.currency = req.query.currency
+	if (req.query.destination) data.destination = req.query.destination
+	if (req.query.origin) data.origin = req.query.origin
+	if (req.query.limit) data.limit = req.query.limit
+
+	priceHistory(data, (error, {flightInfo} = {}) => {
 		if (error) {
 			return res.send({
-				error: 'Houve um erro'
+				error: error
 			})
 		}
 
 		flightInfo.forEach((flight) => {
-			flight.dpartureInfo = getCityName(flight.origin)
-			flight.destinationInfo = getCityName(flight.destination)
+			flight.departureInfo = getCityData(req.query.origin)
+			// flight.destinationInfo = getCityData(req.query.destination.toUpperCase()) !== undefined ? getCityData(req.query.destination.toUpperCase()) : {name: flight.destination}
+			// console.log(flight.destination)
 		})
 
 		return res.send({
-			// departureCity: getCityName(req.query.origin)[0],
-			arrivalCity: flightInfo.destination + 'aa',
 			flightInfo
 		})
 	})
