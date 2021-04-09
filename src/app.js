@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
 const priceHistory = require('./utils/flight-price-history')
+const getCityName = require('./utils/get-city-name')
 
 const app = express()
 const port = process.env.PORT || 3000 // For Heroku
@@ -36,17 +37,23 @@ app.get('/flights', (req, res) => {
 	}, (error, {flightInfo} = {}) => {
 		if (error) {
 			return res.send({
-				error: 'Houve um error'
+				error: 'Houve um erro'
 			})
 		}
 
+		flightInfo.forEach((flight) => {
+			flight.dpartureInfo = getCityName(flight.origin)
+			flight.destinationInfo = getCityName(flight.destination)
+		})
+
 		return res.send({
+			// departureCity: getCityName(req.query.origin)[0],
+			arrivalCity: flightInfo.destination + 'aa',
 			flightInfo
 		})
 	})
 })
 
 app.listen(port, () => {
-	console.log(port)
 	console.log('Server up and runnning')
 })
