@@ -43,9 +43,13 @@ app.get('/flights', (req, res) => {
 
 		flightInfo.forEach((flight) => {
 			flight.departureInfo = getCityData(data.origin)
-			flight.destinationInfo = getCityData(flight.destination) !== undefined 
-										? flight.destinationInfo = getCityData(flight.destination)
-										: flight.destinationInfo = { name_translations: { pt: flight.destination } }
+			if (req.query.destination) {
+				flight.destinationInfo = getCityData(req.query.destination)
+			} else if (!req.query.destination && getCityData(flight.destination) === undefined) {
+				flight.destinationInfo = { name_translations: { pt: flight.destination } }
+			} else {
+				flight.destinationInfo = getCityData(flight.destination)
+			}
 		})
 
 		return res.send({
