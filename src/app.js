@@ -30,8 +30,8 @@ app.get('/flights', (req, res) => {
 	}
 
 	if (req.query.currency) data.currency = req.query.currency
-	if (req.query.destination) data.destination = req.query.destination
-	if (req.query.origin) data.origin = req.query.origin
+	if (req.query.destination) data.destination = req.query.destination.toUpperCase()
+	if (req.query.origin) data.origin = req.query.origin.toUpperCase()
 	if (req.query.limit) data.limit = req.query.limit
 
 	priceHistory(data, (error, {flightInfo} = {}) => {
@@ -42,9 +42,10 @@ app.get('/flights', (req, res) => {
 		}
 
 		flightInfo.forEach((flight) => {
-			flight.departureInfo = getCityData(req.query.origin)
-			// flight.destinationInfo = getCityData(req.query.destination.toUpperCase()) !== undefined ? getCityData(req.query.destination.toUpperCase()) : {name: flight.destination}
-			// console.log(flight.destination)
+			flight.departureInfo = getCityData(data.origin)
+			flight.destinationInfo = getCityData(flight.destination) !== undefined 
+										? flight.destinationInfo = getCityData(flight.destination)
+										: flight.destinationInfo = { name_translations: { pt: flight.destination } }
 		})
 
 		return res.send({

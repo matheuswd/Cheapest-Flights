@@ -17,11 +17,10 @@ flightForm.addEventListener('submit', (e) => {
 	.then((response) => {
 		response.json().then(({flightInfo} = {}) => {
 			flightInfo.forEach((flight) => {
-					
 				html += `<div class="card">
 					<div class="card__wrapper">
 						<span>Origem: ${flight.departureInfo.name_translations.pt}</span><p class="card__departure-airport">${flight.origin}</p>
-						<span>Destino: ${flight.destinationInfo.name}</span><p class="card__arrival-airport">${flight.destination}</p><span></span>
+						<span>Destino: ${flight.destinationInfo.name_translations.pt}</span><p class="card__arrival-airport">${flight.destination}</p><span></span>
 					</div>
 					<div class="info__wrapper">
 						<div class="first-part">
